@@ -121,8 +121,3 @@ def results():
         for i in pure_words:
             print(i)
             file.write(i + '\n')
-
-if __name__ == "__name__":
-    import doctest
-    print(doctest.testmod())
-    results()
