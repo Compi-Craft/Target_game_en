@@ -8,7 +8,15 @@ def generate_grid() -> list[str]:
     Returns:
         list[str]: list of letters for the play
     """
-    pass
+    alpha_lst = ["а", "б", "в", "г", "ґ", "д", "е", "є", "ж",\
+"з", "и", "і", "ї", "й", "к", "л", "м", "н", "о", "п", "р", "с",\
+"т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ь", "ю", "я"]
+    game_lst = []
+    while len(game_lst) < 5:
+        letter = choice(alpha_lst)
+        if letter not in game_lst:
+            game_lst.append(letter)
+    return game_lst
 
 def get_words(file_name: str, letters: list[str]) -> list[tuple]:
     """
