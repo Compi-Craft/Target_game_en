@@ -76,7 +76,7 @@ words_from_dict: List[str]) -> List[str]:
         if i not in words_from_dict:
             start_word = i
             i = i.lower()
-            if len(i) > 4 and letters[4] in i:
+            if len(i) >= 4 and letters[4] in i:
                 for k in i:
                     if k in letters and i.count(k) <= letters.count(k):
                         check = True
@@ -121,3 +121,8 @@ def results():
         for i in pure_words:
             print(i)
             file.write(i + '\n')
+
+if __name__ == "__name__":
+    import doctest
+    print(doctest.testmod())
+    results()
