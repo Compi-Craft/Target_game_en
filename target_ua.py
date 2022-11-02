@@ -39,7 +39,32 @@ def get_words(file_name: str, letters: list[str]) -> list[tuple]:
 ('щур', 'noun'), ('щурик', 'noun'), ('щурка', 'noun'), ('щуря', 'noun'), \
 ('щучий', 'adjective'), ('щучин', 'adjective'), ('щучка', 'noun')]
     """
-    pass
+    with open(file_name, "r", encoding="utf-8") as file:
+        file_lst = []
+        check_lst = ["adv", "/adj", "noun", "verb", "/v", "/n"]
+        for line in file:
+            word = ''
+            part_of_speech = ''
+            line = line.replace("\n", "")
+            for k in check_lst:
+                if k in line:
+                    if k == 'adv':
+                        part_of_speech = 'adverb'
+                    if k == '/adj':
+                        part_of_speech = 'adjective'
+                    if k in ("noun", '/n'):
+                        part_of_speech = 'noun'
+                    if k in ('/v', "verb"):
+                        part_of_speech = 'verb'
+            if part_of_speech != "":
+                for i in line:
+                    if i == " ":
+                        break
+                    word += i
+            if len(word) != 0:
+                if len(word) <= 5 and word[0] in letters and (word, part_of_speech) not in file_lst:
+                    file_lst.append((word, part_of_speech))
+    return file_lst
 
 def check_user_words(user_words: list[str], language_part: str,\
 letters: list[str], dict_of_words: list[tuple]) -> tuple[list]:
