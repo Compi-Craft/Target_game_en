@@ -78,7 +78,17 @@ letters: list[str], dict_of_words: list[tuple]) -> tuple[list]:
     Returns:
         tuple[list]: list of player right words and list of words he missed
     """
-    pass
+    player_win_lst = []
+    for i in user_words:
+        if i[0] in letters:
+            for k in dict_of_words:
+                if i in k[0] and i not in player_win_lst:
+                    player_win_lst.append(i)
+    skip_lst = []
+    for i in dict_of_words:
+        if i[0] not in player_win_lst and i[1] == language_part:
+            skip_lst.append(i[0])
+    return player_win_lst, skip_lst
 if __name__ == "__main__":
     import doctest
     print(doctest.testmod())
