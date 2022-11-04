@@ -121,3 +121,4 @@ def results():
         for i in pure_words:
             print(i)
             file.write(i + '\n')
+print(get_words("en.txt", [el for el in "jniarnoah"]))
